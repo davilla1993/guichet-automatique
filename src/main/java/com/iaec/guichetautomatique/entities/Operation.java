@@ -4,11 +4,14 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_operation",
+        discriminatorType = DiscriminatorType.STRING)
 public abstract class Operation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     @Column(name = "date_operation")
     private Date dateOperation;
@@ -29,11 +32,11 @@ public abstract class Operation {
         this.compte = compte;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

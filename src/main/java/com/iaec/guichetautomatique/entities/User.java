@@ -1,18 +1,20 @@
 package com.iaec.guichetautomatique.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-public class Client {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
+
     @Column(name = "nom")
     private String nom;
+
     @Column(name = "prenom")
     private String prenom;
+
     @Column(name = "telephone")
     private String telephone;
 
@@ -21,14 +23,12 @@ public class Client {
 
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy="client")
-    private List<Compte> comptes;
 
-    public Client() {
-
+    public User() {
     }
 
-    public Client(String nom, String prenom, String telephone, String login, String password) {
+    public User(int id, String nom, String prenom, String telephone, String login, String password) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
@@ -36,20 +36,19 @@ public class Client {
         this.password = password;
     }
 
-    public Client(String nom, String prenom, String telephone, String login, String password, List<Compte> comptes) {
+    public User(String nom, String prenom, String telephone, String login, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
         this.login = login;
         this.password = password;
-        this.comptes = comptes;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,14 +67,13 @@ public class Client {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
     public String getTelephone() {
         return telephone;
     }
+
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-    public List<Compte> getComptes() {
-        return comptes;
     }
 
     public String getLogin() {
@@ -92,9 +90,5 @@ public class Client {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setComptes(List<Compte> comptes) {
-        this.comptes = comptes;
     }
 }

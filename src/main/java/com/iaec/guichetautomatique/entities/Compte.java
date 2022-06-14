@@ -8,11 +8,8 @@ import java.util.List;
 public class Compte {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "numero_compte")
-    private String numeroCompte;
+    private int numeroCompte;
 
     @Column(name = "date_creation")
     private Date dateCreation;
@@ -21,7 +18,7 @@ public class Compte {
     private double solde;
 
     @ManyToOne
-    @JoinColumn(name= "idClient")
+    @JoinColumn(name= "id_client")
     private Client client;
 
     @OneToMany(mappedBy = "compte")
@@ -30,14 +27,14 @@ public class Compte {
     public Compte() {
     }
 
-    public Compte(String numeroCompte, Date dateCreation, double solde, Client client) {
+    public Compte(int numeroCompte, Date dateCreation, double solde, Client client) {
         this.numeroCompte = numeroCompte;
         this.dateCreation = dateCreation;
         this.solde = solde;
         this.client = client;
     }
 
-    public Compte(String numeroCompte, Date dateCreation, double solde, Client client, List<Operation> operations) {
+    public Compte(int numeroCompte, Date dateCreation, double solde, Client client, List<Operation> operations) {
         this.numeroCompte = numeroCompte;
         this.dateCreation = dateCreation;
         this.solde = solde;
@@ -45,19 +42,16 @@ public class Compte {
         this.operations = operations;
     }
 
-    public Long getId() {
-        return id;
+    public Compte(double solde, Client client) {
+        this.solde = solde;
+        this.client = client;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumeroCompte() {
+    public int getNumeroCompte() {
         return numeroCompte;
     }
 
-    public void setNumeroCompte(String numeroCompte) {
+    public void setNumeroCompte(int numeroCompte) {
         this.numeroCompte = numeroCompte;
     }
 
