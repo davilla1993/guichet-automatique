@@ -3,41 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Guichet Automatique</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 <body>
-    <header>
-        <!--<div class="navbar navbar-default">
-            <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li><a th:href="@{/operations}">Operations</a></li>
-                    <li><a th:href="@{/comptes}">Comptes</a></li>
-                    <li><a th:href="@{/clients}">Clients</a></li>
-                </ul>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/clients}">iGuichet</a>
             </div>
-        </div>-->
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">WebSiteName</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Page 1</a></li>
-                    <li><a href="#">Page 2</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <section>
+            <ul class="nav navbar-nav">
+                <li class="active"><a th:href="@{/clients}">Clients</a></li>
+                <li><a th:href="@{/comptes}">Comptes</a></li>
+                <li><a th:href="@{/operations}">Opérations</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <section>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Consultation d'un compte</div>
+                <div class="panel-body">
+                    <form th:action="@{/consulterCompte}" method="get">
+                        <div>
+                            <label>Numéro de compte:</label>
+                            <input type="text" name="numCompte"/>
+                            <button type="submit" class="btn btn-primary">OK</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-primary" th:if="${compte}">
+                <div class="panel-heading">Informations sur le compte</div>
+                <div class="panel-body">
+                    <div>
+                        <label>Numéro de compte:</label>
+                        <label th:text="${compte.numeroCompte}"></label>
+                    </div>
+                    <div>
+                        <label>Titulaire de compte:</label>
+                        <label th:text="${compte.client.nom}"></label>
+                        <label th:text="${compte.client.prenom}"></label>
+                    </div>
+                    <div>
+                        <label>Date de création:</label>
+                        <label th:text="${compte.dateCreation}"></label>
+                    </div>
+                    <div>
+                        <label>Solde:</label>
+                        <label th:text="${compte.solde}"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary" th:if="${compte}">
+                <div class="panel-heading">Opérations sur le compte</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+            <div class="panel panel-primary" th:if="${compte}">
+                <div class="panel-heading">Liste des opérations</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
     </section>
     <footer>
         <div class="navbar-fixed-bottom">
