@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Guichet Automatique</title>
+    <title>iGuichet|Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -15,71 +15,24 @@
                 <a class="navbar-brand" th:href="@{/clients}">iGuichet</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a th:href="@{/clients}">Clients</a></li>
+                <li class="active"><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/clients}">Clients</a></li>
                 <li><a th:href="@{/comptes}">Comptes</a></li>
                 <li><a th:href="@{/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Déconnexion</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
             </ul>
         </div>
     </nav>
-
     <section>
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Consultation d'un compte</div>
-                <div class="panel-body">
-                    <form th:action="@{/consulterCompte}" method="get">
-                        <div>
-                            <label>Numéro de compte:</label>
-                            <input type="text" name="numCompte"/>
-                            <button type="submit" class="btn btn-primary">OK</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="panel panel-primary" th:if="${compte}">
-                <div class="panel-heading">Informations sur le compte</div>
-                <div class="panel-body">
-                    <div>
-                        <label>Numéro de compte:</label>
-                        <label th:text="${compte.numeroCompte}"></label>
-                    </div>
-                    <div>
-                        <label>Titulaire de compte:</label>
-                        <label th:text="${compte.client.nom}"></label>
-                        <label th:text="${compte.client.prenom}"></label>
-                    </div>
-                    <div>
-                        <label>Date de création:</label>
-                        <label th:text="${compte.dateCreation}"></label>
-                    </div>
-                    <div>
-                        <label>Solde:</label>
-                        <label th:text="${compte.solde}"></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-primary" th:if="${compte}">
-                <div class="panel-heading">Opérations sur le compte</div>
-                <div class="panel-body">
-
-                </div>
-            </div>
-            <div class="panel panel-primary" th:if="${compte}">
-                <div class="panel-heading">Liste des opérations</div>
-                <div class="panel-body">
-
-                </div>
-            </div>
+        <div>
+            <h1>Home</h1>
         </div>
     </section>
     <footer>
-        <div class="navbar-fixed-bottom">
+        <div class="navbar-fixed-bottom text-center">
             <small>&copy;Developed by Gbossou & Pereke</small>
         </div>
     </footer>

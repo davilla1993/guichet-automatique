@@ -5,6 +5,8 @@ import com.iaec.guichetautomatique.repository.ClientRepository;
 import com.iaec.guichetautomatique.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,12 +47,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> findAllClients() {
-        try{
-            return clientRepository.findAll();
-        } catch(Exception ex) {
-            throw new RuntimeException("Aucun client n'a été trouvé dans la BDD");
-        }
+    public Page<Client> findAllClients(int page, int size) {
+        return clientRepository.findAllClients(PageRequest.of(page, size));
+
     }
 
     @Override
