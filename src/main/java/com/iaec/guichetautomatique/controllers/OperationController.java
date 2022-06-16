@@ -5,12 +5,10 @@ import com.iaec.guichetautomatique.entities.Operation;
 import com.iaec.guichetautomatique.services.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -22,9 +20,14 @@ public class OperationController {
 
         this.operationService = operationService;
     }
+    @GetMapping("/operations")
+    public String operations(){
+
+        return "admin/operation";
+    }
     @GetMapping("/consulterCompte")
     public String consulter(Model model, int numCompte,
-            @RequestParam(name="page", defaultValue="1")int page,
+            @RequestParam(name="page", defaultValue="0")int page,
                             @RequestParam(name="size", defaultValue="4")int size){
         String message = "";
 

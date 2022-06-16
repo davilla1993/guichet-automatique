@@ -14,7 +14,7 @@ public interface ClientService {
 
     public Client findByLogin(String login);
 
-    public Page<Client> findAllClients(int page, int size);
+    public List<Client> findAllClients();
 
     public void deleteClient(int id);
 }

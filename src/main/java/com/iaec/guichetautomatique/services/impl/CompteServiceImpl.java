@@ -5,6 +5,8 @@ import com.iaec.guichetautomatique.repository.CompteRepository;
 import com.iaec.guichetautomatique.services.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,7 @@ public class CompteServiceImpl implements CompteService {
 
     @Autowired
     public CompteServiceImpl(CompteRepository compteRepository) {
+
         this.compteRepository = compteRepository;
     }
 
@@ -34,6 +37,11 @@ public class CompteServiceImpl implements CompteService {
     @Override
     public List<Compte> findAll() {
         return compteRepository.findAll();
+    }
+
+    @Override
+    public Page<Compte> listCompteByPage(int page, int size) {
+        return compteRepository.listCompteByPage(PageRequest.of(page, size));
     }
 
     @Override

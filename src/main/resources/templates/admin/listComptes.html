@@ -28,23 +28,23 @@
     </nav>
     <section>
         <div class="panel panel-primary">
-            <div class="panel-heading">Liste des clients de la banque</div>
+            <div class="panel-heading">Liste des comptes</div>
             <div class="panel-body">
                 <table class="table table-striped">
                     <tr>
-                        <th>N°</th>
-                        <th>Noms</th>
-                        <th>Prénoms</th>
-                        <th>Téléphones</th>
-                        <th>Login</th>
+                        <th>N° comptes</th>
+                        <th>Date de création</th>
+                        <th>Soldes</th>
+                        <th>Nom titulaire</th>
+                        <th>Prénom titulaire</th>
                         <th>Actions</th>
                     </tr>
-                    <tr th:each="client:${listClients}">
-                        <td th:text="${client.id}"></td>
-                        <td th:text="${client.nom}"></td>
-                        <td th:text="${client.prenom}"></td>
-                        <td th:text="${client.telephone}"></td>
-                        <td th:text="${client.login}"></td>
+                    <tr th:each="compte:${listComptes}">
+                        <td th:text="${compte.numeroCompte}"></td>
+                        <td th:text="${compte.dateCreation}"></td>
+                        <td th:text="${compte.solde}"></td>
+                        <td th:text="${compte.client.nom}"></td>
+                        <td th:text="${compte.client.prenom}"></td>
                         <td>
                             <button type="button" class="btn btn-warning">Editer</button>
                             <button type="button" class="btn btn-danger">Supprimer</button>
@@ -54,7 +54,7 @@
                 <div class="container text-center">
                     <ul class="nav nav-pills">
                         <li th:each="p,status:${pages}">
-                            <a th:href="@{/consulterCompte(numCompte=${numCompte},page=${status.index})}"
+                            <a th:href="@{/comptes(page=${status.index})}"
                                th:text="${status.index}"></a>
                         </li>
                     </ul>

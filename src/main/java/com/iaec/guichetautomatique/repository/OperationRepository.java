@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface OperationRepository extends JpaRepository<Operation, Integer> {
 
-    @Query("select o from Operation o where o.compte.numeroCompte=:numCompte order by o.dateOperation DESC")
+    @Query("select o from Operation o where o.compte.numeroCompte=:numCompte order by o.dateOperation ASC")
     public Page<Operation> listOperation(@Param("numCompte") int numeroCompte, Pageable pageable);
 }
