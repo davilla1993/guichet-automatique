@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>iGuichet | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">iGuichet</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/clients}">Clients</a></li>
+                <li><a th:href="@{/comptes}">Comptes</a></li>
+                <li class="active"><a th:href="@{/operations}">Opérations</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="container d-flex">
+        <div class="col-md-10">
+            <div class="col-md-10 col-md-offset-2 align-center">
+                <h1>Ajouter un nouveau client</h1>
+            </div>
+            <form action="@{/client/save}" method="get">
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="nom">Nom:</label>
+                    <input type="text" class="form-control" name="nom" id="nom">
+                </div>
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="prenom">Prenoms:</label>
+                    <input type="text" class="form-control" name="prenom" id="prenom">
+                </div>
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="tel">Téléphone:</label>
+                    <input type="tel" class="form-control" name="tel" id="tel">
+                </div>
+                <!--<div class="form-group">
+                    <label for="login">login:</label>
+                    <input type="text" class="form-control" name="login" id="login">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Mot de passe:</label>
+                    <input type="password" class="form-control" name="pwd" id="pwd">
+                </div>-->
+                <!--<div class="form-group">
+                    <label>Compte:</label>
+                    <select th:field="*{compte}">
+                        <th:block th:each="compte: ${listComptes}">
+                            <option th:value="${compte.numeroCompte}">
+                                ${compte.numeroCompte}|${compte.client.nom}-${compte.client.prenom}
+                            </option>
+                        </th:block>
+                    </select>
+                </div>-->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="navbar-fixed-bottom text-center">
+            <small>&copy;Developed by Gbossou & Pereke</small>
+        </div>
+    </footer>
+</body>
+</html>
