@@ -30,31 +30,45 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Liste des clients de la banque</div>
 
+            <div th:if="${message}" th:text="${message}"></div>
+
             <div class="panel-body">
                 <div class="justify-content-end mx-5">
                     <a class="btn btn-info" th:href="@{/client/new}" role="button">
                         Nouveau client</a>
                 </div>
                 <table class="table table-striped">
-                    <tr>
-                        <th>N°</th>
-                        <th>Noms</th>
-                        <th>Prénoms</th>
-                        <th>Téléphones</th>
-                        <th>Login</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr th:each="client:${listClients}">
-                        <td th:text="${client.id}"></td>
-                        <td th:text="${client.nom}"></td>
-                        <td th:text="${client.prenom}"></td>
-                        <td th:text="${client.telephone}"></td>
-                        <td th:text="${client.login}"></td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Editer</button>
-                            <button type="button" class="btn btn-danger">Supprimer</button>
-                        </td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Noms</th>
+                            <th>Prénoms</th>
+                            <th>Téléphones</th>
+                            <th>Login</th>
+                            <th>Mots de passe</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:each="client:${listClients}">
+                            <tr>
+                                <td th:text="${client.id}"></td>
+                                <td th:text="${client.nom}"></td>
+                                <td th:text="${client.prenom}"></td>
+                                <td th:text="${client.telephone}"></td>
+                                <td th:text="${client.login}"></td>
+                                <td th:text="${client.password}"></td>
+
+                                <td>
+                                    <a class="btn btn-warning" th:href="@{'/client/edit/' + ${client.id}}">Editer</a>
+
+                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce client?')"
+                                       class="btn btn-danger" th:href="@{'/client/delete/' + ${client.id}}">Supprimer</a>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+
                 </table>
                 <div class="container text-center">
                     <ul class="nav nav-pills">

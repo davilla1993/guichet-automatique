@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -33,12 +34,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findById(int id) {
-        try{
-            return clientRepository.findById(id).get();
-        } catch(Exception ex) {
-            throw new RuntimeException("Aucun client n'a été trouvé avec cet ID: " + id);
+    public Client getById(Integer id) {
+       Optional<Client> result = clientRepository.findById(id);
+        if(result.isPresent()){
+            return result.get();
         }
+        throw new RuntimeException("Aucun client n'a été trouvé avec cet ID: " + id);
+
     }
 
     @Override
@@ -57,7 +59,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteClient(int id) {
+    public void deleteClient(Integer id) {
+        Long count = clientRepository.countById(id);
+        if(count == null || count == 0){
+            throw new RuntimeException("Aucun client n'a été trouvé avec ce ID: " + id);
+        }
         clientRepository.deleteById(id);
     }
 }

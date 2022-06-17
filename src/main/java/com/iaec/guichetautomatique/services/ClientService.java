@@ -10,11 +10,11 @@ public interface ClientService {
 
     public Client create(Client client);
 
-    public Client findById(int id);
+    public Client getById(Integer id);
 
     public Client findByLogin(String login);
 
     public List<Client> findAllClients();
 
-    public void deleteClient(int id);
+    public void deleteClient(Integer id);
 }

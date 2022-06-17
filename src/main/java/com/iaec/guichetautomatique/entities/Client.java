@@ -1,6 +1,9 @@
 package com.iaec.guichetautomatique.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -8,14 +11,20 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @Column(name = "nom")
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Size(min=2, max=20, message="Le nom doit être compris entre 2 et 20 caractères")
     private String nom;
-    @Column(name = "prenom")
+    @Column(name= "prenom")
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Size(min=2, max=20, message="Le prénom doit être compris entre 2 et 20 caractères")
     private String prenom;
     @Column(name = "telephone")
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Digits(integer=12,fraction=0, message = "Le numero de téléphone ne doit comporter que des chiffres")
+    @Size(min = 7, max = 12, message = "Le numéro doit être compris entre 7 et 12 caractères")
     private String telephone;
-
     @Column(name = "login")
     private String login;
 
@@ -45,11 +54,11 @@ public class Client {
         this.comptes = comptes;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
