@@ -44,26 +44,30 @@
                     <label for="tel">Téléphone:</label>
                     <input type="tel" class="form-control" name="tel" id="tel">
                 </div>
-                <!--<div class="form-group">
-                    <label for="login">login:</label>
-                    <input type="text" class="form-control" name="login" id="login">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Mot de passe:</label>
-                    <input type="password" class="form-control" name="pwd" id="pwd">
-                </div>-->
-                <!--<div class="form-group">
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
                     <label>Compte:</label>
-                    <select th:field="*{compte}">
-                        <th:block th:each="compte: ${listComptes}">
+                    <select class="form-control">
+                        <th:block th:each="compte:${listComptes}">
                             <option th:value="${compte.numeroCompte}">
-                                ${compte.numeroCompte}|${compte.client.nom}-${compte.client.prenom}
+                                [[${compte.numeroCompte}]]|
+                                <label>[[${compte.client.nom}]]-[[${compte.client.prenom}]]</label>
                             </option>
                         </th:block>
                     </select>
-                </div>-->
+                </div>
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="login">Login:</label>
+                    <input type="text" class="form-control" name="login" id="login"
+                           th:value="*{client.login}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="pwd">Mot de passe:</label>
+                    <input type="text" class="form-control" name="pwd" id="pwd"
+                           th:value="*{client.password}" readonly="readonly">
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Envoyer</button>
+                    <a class="btn btn-warning" href="#" role="button" id="CancelButton">Annuler</a>
                 </div>
             </form>
         </div>

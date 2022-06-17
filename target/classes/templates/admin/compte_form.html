@@ -26,45 +26,34 @@
             </ul>
         </div>
     </nav>
-    <section>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Liste des clients de la banque</div>
-
-            <div class="panel-body">
-                <div class="justify-content-end mx-5">
-                    <a class="btn btn-info" th:href="@{/client/new}" role="button">
-                        Nouveau client</a>
-                </div>
-                <table class="table table-striped">
-                    <tr>
-                        <th>N°</th>
-                        <th>Noms</th>
-                        <th>Prénoms</th>
-                        <th>Téléphones</th>
-                        <th>Login</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr th:each="client:${listClients}">
-                        <td th:text="${client.id}"></td>
-                        <td th:text="${client.nom}"></td>
-                        <td th:text="${client.prenom}"></td>
-                        <td th:text="${client.telephone}"></td>
-                        <td th:text="${client.login}"></td>
-                        <td>
-                            <button type="button" class="btn btn-warning">Editer</button>
-                            <button type="button" class="btn btn-danger">Supprimer</button>
-                        </td>
-                    </tr>
-                </table>
-                <div class="container text-center">
-                    <ul class="nav nav-pills">
-                        <li th:each="p,status:${pages}">
-                            <a th:href="@{/consulterCompte(numCompte=${numCompte},page=${status.index})}"
-                               th:text="${status.index}"></a>
-                        </li>
-                    </ul>
-                </div>
+    <section class="container d-flex">
+        <div class="col-md-10">
+            <div class="col-md-10 col-md-offset-2 align-center">
+                <h1>Ajouter un nouveau compte</h1>
             </div>
+            <form action="@{/compte/save}" method="get">
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="numCompte">Num compte:</label>
+                    <input type="text" class="form-control" name="nom" id="numCompte"
+                           th:value="*{compte.numeroCompte}" readonly="readonly">
+                </div>
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="date">Date création:</label>
+                    <input type="text" class="form-control" name="date" id="date"
+                           th:value="*{compte.dateCreation}" readonly="readonly">
+                </div>
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="solde">Solde:</label>
+                    <input type="number" class="form-control" name="solde" id="solde">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                    <a class="btn btn-warning" href="#" role="button" id="CancelButton">Annuler</a>
+                </div>
+            </form>
         </div>
     </section>
     <footer>

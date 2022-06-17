@@ -20,11 +20,15 @@ public class ClientServiceImpl implements ClientService {
 
     @Autowired
     public ClientServiceImpl(ClientRepository clientRepository) {
+
         this.clientRepository = clientRepository;
     }
 
     @Override
     public Client create(Client client) {
+        client.setLogin(client.getNom());
+        client.setPassword(client.getTelephone());
+
         return clientRepository.save(client);
     }
 

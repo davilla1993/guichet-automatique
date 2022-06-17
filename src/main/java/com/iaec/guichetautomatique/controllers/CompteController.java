@@ -29,4 +29,13 @@ public class CompteController {
 
         return "admin/listComptes";
     }
+
+    @GetMapping("/compte/new")
+    public String newCompte(Model model){
+        Compte compte = new Compte();
+
+        model.addAttribute("compte", compte);
+
+        return "/admin/compte_form";
+    }
 }

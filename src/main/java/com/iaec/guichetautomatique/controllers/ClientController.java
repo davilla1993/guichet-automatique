@@ -46,7 +46,7 @@ public class ClientController {
         List<Compte> listComptes = compteService.findAll();
         Client client = new Client();
 
-        model.addAttribute("listeComptes", listComptes);
+        model.addAttribute("listComptes", listComptes);
         model.addAttribute("client", client);
 
         return "admin/client_form";
