@@ -18,40 +18,39 @@
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/clients}">Clients</a></li>
                 <li><a th:href="@{/comptes}">Comptes</a></li>
-                <li class="active"><a th:href="@{/operations}">Opérations</a></li>
+                <li><a th:href="@{/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
             </ul>
         </div>
     </nav>
     <section class="container d-flex">
         <div class="col-md-10">
             <div class="col-md-10 col-md-offset-2 align-center">
-                <h1>Ajouter un nouveau compte</h1>
+                <h1>[[${title}]]</h1>
             </div>
-            <form action="@{/compte/save}" method="get">
+            <form th:action="@{/compte/save}" method="post" th:object="${compte}">
 
-                <div class="form-group col-md-10 col-md-offset-2 align-center">
-                    <label for="numCompte">Num compte:</label>
-                    <input type="text" class="form-control" name="nom" id="numCompte"
-                           th:value="*{compte.numeroCompte}" readonly="readonly">
-                </div>
-
-                <div class="form-group col-md-10 col-md-offset-2 align-center">
-                    <label for="date">Date création:</label>
-                    <input type="text" class="form-control" name="date" id="date"
-                           th:value="*{compte.dateCreation}" readonly="readonly">
-                </div>
                 <div class="form-group col-md-10 col-md-offset-2 align-center">
                     <label for="solde">Solde:</label>
-                    <input type="number" class="form-control" name="solde" id="solde">
+                    <input type="number" min="0" class="form-control" name="solde" id="solde">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('solde')}" th:text="${err}" class="alert alert-danger" />
+                    </ul>
+                </div>
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label>Client:</label>
+                    <select th:field="*{client}" class="form-control">
+                        <th:block th:each="client:${lastClients}">
+                            <option th:value="${client.id}" th:text="${client.nom}">[[${client.nom}]]</option>
+                        </th:block>
+                    </select>
                 </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Envoyer</button>
-                    <a class="btn btn-warning" href="#" role="button" id="CancelButton">Annuler</a>
+                    <a class="btn btn-warning" th:href="@{/comptes}" role="button" id="CancelButton">Annuler</a>
                 </div>
             </form>
         </div>

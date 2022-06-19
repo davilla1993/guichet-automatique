@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -45,16 +46,27 @@ public class CompteServiceImpl implements CompteService {
     }
 
     @Override
-    public Compte findById(int numeroCompte) {
-        Compte compte = compteRepository.findById(numeroCompte).get();
+    public Compte findById(int id) {
+        Compte compte = compteRepository.findById(id).get();
         if(compte == null){
-            throw new RuntimeException("Aucun compte n'existe avec ce numero");
+            throw new RuntimeException("Aucun compte n'existe avec ce ID :" + id);
         }
         return compte;
     }
 
     @Override
+    public Compte getCompteByNumeroCompte(Integer numCompte) {
+        Optional<Compte> result = compteRepository.findCompteByNumeroCompte(numCompte);
+
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new RuntimeException("Numéro de compte introuvable");
+    }
+
+    @Override
     public void delete(int numeroCompte) {
+
         compteRepository.deleteById(numeroCompte);
     }
 

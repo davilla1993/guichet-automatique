@@ -32,7 +32,6 @@ public class ClientController {
 
     @GetMapping("/clients")
     public String listClients(Model model) {
-        String message="";
 
         try {
             List<Client> listClients = clientService.findAllClients();
@@ -40,10 +39,10 @@ public class ClientController {
             model.addAttribute("listClients", listClients);
 
         } catch (Exception e) {
-            message = e.getMessage();
+            String message = e.getMessage();
+            System.out.println(message);
         }
 
-        model.addAttribute("message", message);
         return "admin/listClients";
     }
     @GetMapping("/client/new")
@@ -53,6 +52,7 @@ public class ClientController {
 
         model.addAttribute("listComptes", listComptes);
         model.addAttribute("client", new Client());
+        model.addAttribute("title", "Ajouter un nouveau client");
 
         return "admin/client_form";
     }
@@ -66,7 +66,10 @@ public class ClientController {
         }
 
         clientService.create(client);
-        redirectAttributes.addFlashAttribute("message", "Le client a été créé avec succès");
+
+        redirectAttributes.addFlashAttribute("message",
+                "Le client a été créé avec succès");
+
         return "redirect:/clients";
     }
 
@@ -76,6 +79,10 @@ public class ClientController {
         try {
             Client client = clientService.getById(id);
             model.addAttribute("client", client);
+            model.addAttribute("title", "Editer un client");
+
+            redirectAttributes.addFlashAttribute("message",
+                    "Les informations du client ont été mises à jour avec succès");
 
             return "admin/client_form";
 

@@ -6,7 +6,9 @@ import com.iaec.guichetautomatique.entities.Retrait;
 import com.iaec.guichetautomatique.entities.Versement;
 import com.iaec.guichetautomatique.repository.CompteRepository;
 import com.iaec.guichetautomatique.repository.OperationRepository;
+import com.iaec.guichetautomatique.services.CompteService;
 import com.iaec.guichetautomatique.services.OperationService;
+import org.hibernate.service.spi.OptionallyManageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,20 +27,17 @@ public class OperationServiceImpl implements OperationService {
 
     @Autowired
     public OperationServiceImpl(CompteRepository compteRepository, OperationRepository operationRepository) {
-        this.compteRepository = compteRepository;
         this.operationRepository = operationRepository;
+        this.compteRepository = compteRepository;
     }
 
     @Override
     public Compte consulterCompte(int numeroCompte) {
-
-        try {
-            return compteRepository.findById(numeroCompte).get();
-        } catch (Exception e) {
-            throw new RuntimeException("Aucun compte n'a été trouvé avec ce numéro : " + numeroCompte);
-
+        Optional<Compte> result = compteRepository.findCompteByNumeroCompte(numeroCompte);
+        if(result.isPresent()){
+            return result.get();
         }
-
+        throw new RuntimeException("Compte introuvable");
     }
 
     @Override

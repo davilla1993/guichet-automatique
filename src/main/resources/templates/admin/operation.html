@@ -20,7 +20,7 @@
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/clients}">Clients</a></li>
                 <li><a th:href="@{/comptes}">Comptes</a></li>
-                <li class="active"><a th:href="@{/operations}">Opérations</a></li>
+                <li><a th:href="@{/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
@@ -36,7 +36,7 @@
                     <form th:action="@{/consulterCompte}" method="get">
                         <div>
                             <label>Numéro de compte:</label>
-                            <input type="text" name="numCompte" th:value="${numCompte}"/>
+                            <input type="number" name="numCompte" th:value="${numCompte}"/>
                             <button type="submit" class="btn btn-primary">OK</button>
                         </div>
                         <div class="text-danger"

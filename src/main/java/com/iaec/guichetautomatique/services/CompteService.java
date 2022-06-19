@@ -13,7 +13,9 @@ public interface CompteService {
 
     public Page<Compte> listCompteByPage(int page, int size);
 
-    public Compte findById(int numeroCompte);
+    public Compte findById(int id);
+
+    public Compte getCompteByNumeroCompte(Integer numCompte);
 
     public void delete(int numeroCompte);
 

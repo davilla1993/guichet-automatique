@@ -45,26 +45,8 @@ public class GuichetAutomatiqueApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*Client c1 = clientRepo.save(new Client("GBOSSOU", "Folly", "91554874", "carlo", "carlo"));
-		Client c2 = clientRepo.save(new Client("PEREKE", "Prince", "98342184", "prince", "prince"));
 
-		Compte cp1 = compteService.create(new Compte(120000, c1));
-		Compte cp2 = compteService.create(new Compte( 80000, c2));*/
-
-
-//		operationService.verser(1748637399, 30000);
-
-//		operationService.retirer(1748637399, 15000);
-
-		List<Compte> listeCompte = compteService.findAll();
-		for (Compte compte: listeCompte
-			 ) {
-			System.out.println("Num compte : " + compte.getNumeroCompte());
-			System.out.println("Propriétaire : " + compte.getClient().getNom());
-			System.out.println("Solde  : " + compte.getSolde());
-		}
-
-		Client clientRecherche = clientService.findByLogin("carlo");
-		System.out.println("Client trouvé: " + clientRecherche.getNom());
-	}
+		Client c3 = clientService.create(new Client("GBOSSOU", "Folly", "91554874", "carlo", "carlo"));
+		Compte cp3 = compteService.create(new Compte(15000, c3));
+}
 }

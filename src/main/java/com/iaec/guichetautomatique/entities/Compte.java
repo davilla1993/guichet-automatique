@@ -1,6 +1,7 @@
 package com.iaec.guichetautomatique.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import java.util.List;
 public class Compte {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
     @Column(name = "numero_compte")
     private int numeroCompte;
 
@@ -15,6 +18,7 @@ public class Compte {
     private Date dateCreation;
 
     @Column(name = "solde")
+    @Digits(integer =16, fraction = 2, message = "Le solde doit être uniquement des chiffres")
     private double solde;
 
     @ManyToOne

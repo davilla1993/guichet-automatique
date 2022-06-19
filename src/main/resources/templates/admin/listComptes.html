@@ -18,7 +18,7 @@
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/clients}">Clients</a></li>
                 <li><a th:href="@{/comptes}">Comptes</a></li>
-                <li class="active"><a th:href="@{/operations}">Opérations</a></li>
+                <li><a th:href="@{/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
@@ -34,6 +34,9 @@
                     <a class="btn btn-info" th:href="@{/compte/new}" role="button">
                         Nouveau compte</a>
                 </div>
+
+                <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>
+
                 <table class="table table-striped">
                     <tr>
                         <th>N° comptes</th>
