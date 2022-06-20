@@ -35,7 +35,7 @@
                         Nouveau client</a>
                 </div>
 
-<!--                <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>-->
+                <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>
 
                 <table class="table table-striped">
                     <thead>
@@ -60,10 +60,10 @@
                                 <td th:text="${client.password}"></td>
 
                                 <td>
-                                    <a class="btn btn-warning" th:href="@{'/client/edit/' + ${client.id}}">Editer</a>
+                                    <a class="btn btn-warning" th:href="@{'/client/edit/' + ${client.id}}">Mettre à jour les informations client</a>
 
-                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce client?')"
-                                       class="btn btn-danger" th:href="@{'/client/delete/' + ${client.id}}">Supprimer</a>
+<!--                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce client?')"-->
+<!--                                       class="btn btn-danger" th:href="@{'/client/delete/' + ${client.id}}">Supprimer</a>-->
                                 </td>
                             </tr>
                         </th:block>

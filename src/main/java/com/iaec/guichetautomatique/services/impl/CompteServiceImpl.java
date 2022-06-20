@@ -47,11 +47,12 @@ public class CompteServiceImpl implements CompteService {
 
     @Override
     public Compte findById(int id) {
-        Compte compte = compteRepository.findById(id).get();
-        if(compte == null){
-            throw new RuntimeException("Aucun compte n'existe avec ce ID :" + id);
-        }
-        return compte;
+      Optional<Compte> compte = compteRepository.findById(id);
+
+      if(compte.isPresent()){
+          return compte.get();
+      }
+      throw new RuntimeException("Aucun compte n'a été trouvé avec cet ID : " + id);
     }
 
     @Override

@@ -5,6 +5,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 public class Client {
@@ -55,6 +56,7 @@ public class Client {
     }
 
     public Integer getId() {
+
         return id;
     }
 
@@ -63,14 +65,17 @@ public class Client {
     }
 
     public String getNom() {
+
         return nom;
     }
 
     public void setNom(String nom) {
+
         this.nom = nom;
     }
 
     public String getPrenom() {
+
         return prenom;
     }
 

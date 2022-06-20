@@ -10,7 +10,7 @@ public class Compte {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Integer id;
     @Column(name = "numero_compte")
     private int numeroCompte;
 
@@ -29,6 +29,14 @@ public class Compte {
     private List<Operation> operations;
 
     public Compte() {
+    }
+
+    public Compte(Integer id, int numeroCompte, Date dateCreation, double solde, Client client) {
+        this.id = id;
+        this.numeroCompte = numeroCompte;
+        this.dateCreation = dateCreation;
+        this.solde = solde;
+        this.client = client;
     }
 
     public Compte(int numeroCompte, Date dateCreation, double solde, Client client) {
@@ -51,43 +59,61 @@ public class Compte {
         this.client = client;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public int getNumeroCompte() {
+
         return numeroCompte;
     }
 
     public void setNumeroCompte(int numeroCompte) {
+
         this.numeroCompte = numeroCompte;
     }
 
     public Date getDateCreation() {
+
         return dateCreation;
     }
 
     public void setDateCreation(Date dateCreation) {
+
         this.dateCreation = dateCreation;
     }
 
     public double getSolde() {
+
         return solde;
     }
 
     public void setSolde(double solde) {
+
         this.solde = solde;
     }
 
     public Client getClient() {
+
         return client;
     }
 
     public void setClient(Client client) {
+
         this.client = client;
     }
 
     public List<Operation> getOperations() {
+
         return operations;
     }
 
     public void setOperations(List<Operation> operations) {
+
         this.operations = operations;
     }
 }

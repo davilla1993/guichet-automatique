@@ -9,10 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -68,9 +65,47 @@ public class CompteController {
 
             compteService.create(compte);
             redirectAttributes.addFlashAttribute("message",
-                    "Le compte a été créé avec succès");
+                    "Les informations de compte ont été ajoutées avec succès");
 
             return "redirect:/comptes";
+    }
+
+    @GetMapping("/compte/edit/{id}")
+    public String editCompte(@PathVariable("id") Integer id, Model model,
+                             RedirectAttributes redirectAttributes){
+
+        try {
+            Compte compte = compteService.findById(id);
+            List<Client> lastClients = clientService.getLastClient();
+
+            model.addAttribute("title", "Mettre à jour les informations");
+            model.addAttribute("compte", compte);
+            model.addAttribute("lastClients", lastClients);
+
+            return "admin/compte_form";
+
+        } catch(Exception ex){
+            redirectAttributes.addFlashAttribute("message",ex.getMessage());
+
+            System.out.println(ex.getMessage());
+
+            return "redirect:/comptes";
+        }
+    }
+
+    @GetMapping("/compte/delete/{id}")
+    public String deleteCompte(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes){
+
+        try{
+            compteService.delete(id);
+            redirectAttributes.addFlashAttribute("message","Le compte a été supprimé avec succès");
+
+        }catch(Exception ex){
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            System.out.println(ex.getMessage());
+        }
+
+        return "redirect:/comptes";
     }
 
 }

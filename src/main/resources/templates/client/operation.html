@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>iGuichet | Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">iGuichet</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/clients}">Profil</a></li>
+                <li><a th:href="@{/comptes}">Comptes</a></li>
+                <li><a th:href="@{/operations}">Opérations</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Consultation d'un compte</div>
+                <div class="panel-body">
+                    <form th:action="@{/consulterCompte}" method="get">
+                        <div>
+                            <label>Numéro de compte:</label>
+                            <input type="number" name="numCompte" th:value="${numCompte}"/>
+                            <button type="submit" class="btn btn-primary">OK</button>
+                        </div>
+                        <div class="text-danger"
+                             th:text="${#httpServletRequest.getParameter('error')}">
+                        </div>
+                    </form>
+                    <div class="text-danger" th:if="${message}" th:text="${message}"></div>
+                </div>
+            </div>
+            <div class="panel panel-primary" th:if="${compte}">
+                <div class="panel-heading">Informations sur le compte</div>
+                <div class="panel-body">
+                    <div>
+                        <label>Numéro de compte:</label>
+                        <label th:text="${compte.numeroCompte}"></label>
+                    </div>
+                    <div>
+                        <label>Titulaire de compte:</label>
+                        <label th:text="${compte.client.nom}"></label>
+                        <label th:text="${compte.client.prenom}"></label>
+                    </div>
+                    <div>
+                        <label>Date de création:</label>
+                        <label th:text="${compte.dateCreation}"></label>
+                    </div>
+                    <div>
+                        <label>Solde:</label>
+                        <label th:text="${compte.solde}"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary" th:if="${compte}">
+                <div class="panel-heading">Opérations sur le compte</div>
+                <div class="panel-body">
+                    <form th:action="@{/depot}" method="post">
+                        <input type="hidden" name="numCompte" th:value="${numCompte}">
+                        <div>
+                            <label>Effectuer un virement</label>
+                            <input type="text" name="montant">
+                            <div class="text-danger"
+                                 th:text="${#httpServletRequest.getParameter('error')}">
+                            </div>
+
+                        </div>
+                            <button type="submit" class="btn btn-primary">Valider</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-primary" th:if="${compte}">
+                <div class="panel-heading">Liste des opérations</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>N°</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                            <th>Montant</th>
+                        </tr>
+                        <tr th:each="op:${listOperations}">
+                            <td th:text="${op.id}"></td>
+                            <td th:text="${op.class.simpleName}"></td>
+                            <td th:text="${op.dateOperation}"></td>
+                            <td th:text="${op.montant}"></td>
+                        </tr>
+                    </table>
+                    <div class="container text-center">
+                        <ul class="nav nav-pills">
+                            <li th:each="p,status:${pages}">
+                                <a th:href="@{/consulterCompte(numCompte=${numCompte},page=${status.index})}"
+                                   th:text="${status.index}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="navbar-fixed-bottom text-center">
+            <small>&copy;Developed by Gbossou & Pereke</small>
+        </div>
+    </footer>
+</body>
+</html>

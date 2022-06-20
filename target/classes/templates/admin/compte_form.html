@@ -31,10 +31,11 @@
                 <h1>[[${title}]]</h1>
             </div>
             <form th:action="@{/compte/save}" method="post" th:object="${compte}">
+                <input type="hidden" th:field="*{id}">
 
                 <div class="form-group col-md-10 col-md-offset-2 align-center">
                     <label for="solde">Solde:</label>
-                    <input type="number" min="0" class="form-control" name="solde" id="solde">
+                    <input type="number" min="0" class="form-control" name="solde" id="solde" th:field="*{solde}">
                     <ul>
                         <li th:each="err : ${#fields.errors('solde')}" th:text="${err}" class="alert alert-danger" />
                     </ul>
@@ -43,7 +44,8 @@
                     <label>Client:</label>
                     <select th:field="*{client}" class="form-control">
                         <th:block th:each="client:${lastClients}">
-                            <option th:value="${client.id}" th:text="${client.nom}">[[${client.nom}]]</option>
+                            <option th:field="*{client}" th:value="${client.id}" th:text="${client.nom}">
+                                [[${client.nom}]]</option>
                         </th:block>
                     </select>
                 </div>

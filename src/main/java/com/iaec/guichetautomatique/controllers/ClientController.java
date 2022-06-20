@@ -66,9 +66,8 @@ public class ClientController {
         }
 
         clientService.create(client);
-
         redirectAttributes.addFlashAttribute("message",
-                "Le client a été créé avec succès");
+                "Les informations du client ont été ajoutées avec succès");
 
         return "redirect:/clients";
     }
@@ -80,9 +79,6 @@ public class ClientController {
             Client client = clientService.getById(id);
             model.addAttribute("client", client);
             model.addAttribute("title", "Editer un client");
-
-            redirectAttributes.addFlashAttribute("message",
-                    "Les informations du client ont été mises à jour avec succès");
 
             return "admin/client_form";
 
