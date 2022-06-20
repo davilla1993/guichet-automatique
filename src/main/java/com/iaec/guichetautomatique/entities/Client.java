@@ -26,7 +26,7 @@ public class Client {
     @Digits(integer=12,fraction=0, message = "Le numero de téléphone ne doit comporter que des chiffres")
     @Size(min = 7, max = 12, message = "Le numéro doit être compris entre 7 et 12 caractères")
     private String telephone;
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
 
     @Column(name = "password")

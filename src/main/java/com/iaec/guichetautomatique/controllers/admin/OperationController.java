@@ -1,4 +1,4 @@
-package com.iaec.guichetautomatique.controllers;
+package com.iaec.guichetautomatique.controllers.admin;
 
 import com.iaec.guichetautomatique.entities.Compte;
 import com.iaec.guichetautomatique.entities.Operation;

@@ -1,5 +1,6 @@
 package com.iaec.guichetautomatique.repository;
 
+import com.iaec.guichetautomatique.entities.Client;
 import com.iaec.guichetautomatique.entities.Compte;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,4 +16,8 @@ public interface CompteRepository extends JpaRepository<Compte, Integer> {
     public Page<Compte> listCompteByPage(Pageable pageable);
 
     public Optional<Compte> findCompteByNumeroCompte(Integer numCompte);
+
+    public List<Compte> findCompteByClient(Integer id);
+
+    public List<Compte> findComptesByClient(Optional<Client> client);
 }

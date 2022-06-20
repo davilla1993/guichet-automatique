@@ -1,4 +1,4 @@
-package com.iaec.guichetautomatique.controllers;
+package com.iaec.guichetautomatique.controllers.admin;
 
 import com.iaec.guichetautomatique.entities.Client;
 import com.iaec.guichetautomatique.entities.Compte;
@@ -41,6 +41,16 @@ public class CompteController {
 
         return "admin/listComptes";
     }
+    /*@GetMapping("/comptes/{id}")
+    public String listCompteByClient(@PathVariable("id") Integer id, Model model){
+
+        Client client = clientService.getById(id);
+        Integer idClient = client.getId();
+
+        List<Compte> compte = compteService.getCompteByClient(idClient);
+
+        return "client/comptes";
+    }*/
 
     @GetMapping("/compte/new")
     public String newCompte(Model model){

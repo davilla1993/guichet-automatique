@@ -13,6 +13,8 @@ public interface CompteService {
 
     public Page<Compte> listCompteByPage(int page, int size);
 
+    public List<Compte> getCompteByClient(Integer id);
+
     public Compte findById(int id);
 
     public Compte getCompteByNumeroCompte(Integer numCompte);

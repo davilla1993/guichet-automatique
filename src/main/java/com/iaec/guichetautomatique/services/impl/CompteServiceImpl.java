@@ -45,24 +45,37 @@ public class CompteServiceImpl implements CompteService {
         return compteRepository.listCompteByPage(PageRequest.of(page, size));
     }
 
+
     @Override
     public Compte findById(int id) {
-      Optional<Compte> compte = compteRepository.findById(id);
+        Optional<Compte> compte = compteRepository.findById(id);
 
-      if(compte.isPresent()){
-          return compte.get();
-      }
-      throw new RuntimeException("Aucun compte n'a été trouvé avec cet ID : " + id);
+        if (compte.isPresent()) {
+            return compte.get();
+        }
+        throw new RuntimeException("Aucun compte n'a été trouvé avec cet ID : " + id);
     }
 
     @Override
     public Compte getCompteByNumeroCompte(Integer numCompte) {
         Optional<Compte> result = compteRepository.findCompteByNumeroCompte(numCompte);
 
-        if(result.isPresent()){
+        if (result.isPresent()) {
             return result.get();
         }
         throw new RuntimeException("Numéro de compte introuvable");
+    }
+
+    @Override
+    public List<Compte> getCompteByClient(Integer id) {
+
+        try {
+            List<Compte> compte = compteRepository.findCompteByClient(id);
+
+            return compte;
+        } catch (Exception ex) {
+            throw new RuntimeException("Aucun compte trouvé");
+        }
     }
 
     @Override
@@ -72,10 +85,10 @@ public class CompteServiceImpl implements CompteService {
     }
 
     @Transient
-    private int generateNumCompte(){
+    private int generateNumCompte() {
 //        Long numCompte = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
         Random r = new Random(System.currentTimeMillis());
-        int numCompte =  Math.abs(1000000000 + r.nextInt(2000000000));
+        int numCompte = Math.abs(1000000000 + r.nextInt(2000000000));
 
         return numCompte;
     }
