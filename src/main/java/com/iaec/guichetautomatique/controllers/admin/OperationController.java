@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/admin")
 public class OperationController {
 
     private OperationService operationService;
@@ -59,11 +61,11 @@ public class OperationController {
 
         }catch(Exception ex){
             model.addAttribute("error", ex);
-            return "redirect:/consulterCompte?numCompte="+numCompte+"&error="+ex.getMessage();
+            return "redirect:/admin/consulterCompte?numCompte="+numCompte+"&error="+ex.getMessage();
 
         }
 
-        return "redirect:/consulterCompte?numCompte="+numCompte;
+        return "redirect:/admin/consulterCompte?numCompte="+numCompte;
     }
 
 }

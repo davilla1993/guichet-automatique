@@ -1,49 +1,32 @@
 package com.iaec.guichetautomatique;
 
-import com.iaec.guichetautomatique.entities.Client;
 import com.iaec.guichetautomatique.entities.Compte;
-import com.iaec.guichetautomatique.entities.Operation;
-import com.iaec.guichetautomatique.entities.Versement;
-import com.iaec.guichetautomatique.repository.ClientRepository;
+import com.iaec.guichetautomatique.entities.Role;
+import com.iaec.guichetautomatique.entities.User;
+import com.iaec.guichetautomatique.repository.UserRepository;
 import com.iaec.guichetautomatique.repository.CompteRepository;
-import com.iaec.guichetautomatique.repository.OperationRepository;
-import com.iaec.guichetautomatique.services.ClientService;
+import com.iaec.guichetautomatique.services.RoleService;
+import com.iaec.guichetautomatique.services.UserService;
 import com.iaec.guichetautomatique.services.CompteService;
 import com.iaec.guichetautomatique.services.OperationService;
-import com.iaec.guichetautomatique.services.UserService;
-import com.iaec.guichetautomatique.services.impl.CompteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
 public class GuichetAutomatiqueApplication implements CommandLineRunner {
 
 	@Autowired
-	private ClientRepository clientRepo;
-
+	private RoleService roleService;
 	@Autowired
 	private CompteService compteService;
-
-	@Autowired
-	private CompteRepository compteRepository;
-
-	@Autowired
-	private OperationService operationService;
-
 	@Autowired
 	private UserService userService;
-
 	@Autowired
-	private ClientService clientService;
-
-	@Autowired
-	private ClientRepository clientRepository;
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 
@@ -52,22 +35,35 @@ public class GuichetAutomatiqueApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*
+		// Création des roles
+		Role role_admin = new Role("ADMIN");
+		Role role_user =  new Role("USER");
+		roleService.createRole(role_admin);
+		roleService.createRole(role_user);
 
-		/*Client c1 = new Client("GBOSSOU", "Folly", "91554874", "carlo", "carlo");
-		clientService.create(c1);
+		// Création des utilisateurs
+		User user1 = new User("Administrateur", "Principal","90876543", "admin", "admin");
+		User user2 = new User("Utilisateur", "Test", "70986547", "user", "user");
+		User user3 = new User("GBOSSOU", "Folly", "91554874", "carlo", "1234");
+		User user4 = new User("ALADE", "Ghislaine", "95126790","ghis", "1234");
+		userService.create(user1);
+		userService.create(user2);
+		userService.create(user3);
+		userService.create(user4);
 
-		compteService.create(new Compte(15000, c1));
-		compteService.create(new Compte(30000, c1));
-		compteService.create(new Compte(45000, c1));
+		// Création des comptes bancaires
+		compteService.create(new Compte(15000, user2));
+		compteService.create(new Compte(30000, user3));
+		compteService.create(new Compte(45000, user3));
+		compteService.create(new Compte(90000, user4));
 
-		Client c2 = clientService.create(new Client("ALADE", "Ghislaine", "95126790","ghis", "ghis123"));
-		compteService.create(new Compte(90000, c2));*/
 
-		List<Compte> listCompte = compteRepository.findComptesByClient(clientRepository.findById(1));
-		for(Compte compte : listCompte){
-			System.out.println("Titulaire : " + compte.getClient().getNom());
-			System.out.println("Numéro de compte:" + compte.getNumeroCompte());
-			System.out.println("Solde : " + compte.getSolde());
-		}
+		final List<Compte> comptesClient = compteService.getComptesByUser(user3.getId());
+			for(Compte compte : comptesClient){
+				System.out.println("Titulaire : " + compte.getUsers().getNom());
+				System.out.println("Numéro de compte:" + compte.getNumeroCompte());
+				System.out.println("Solde : " + compte.getSolde());
+			}*/
 	}
 }

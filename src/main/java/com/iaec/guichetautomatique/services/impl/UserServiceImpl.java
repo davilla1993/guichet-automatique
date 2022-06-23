@@ -4,56 +4,118 @@ import com.iaec.guichetautomatique.entities.User;
 import com.iaec.guichetautomatique.repository.UserRepository;
 import com.iaec.guichetautomatique.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User create(User user) {
+        boolean isUpdatingUser = (user.getId() != null);
+
+        if(isUpdatingUser) {
+            User existingUser = userRepository.findById(user.getId()).get();
+
+            if(user.getPassword().isEmpty()) {
+                user.setPassword(existingUser.getPassword());
+            } else {
+                encodePassword(user);
+            }
+        } else {
+
+            encodePassword(user);
+        }
+
         return userRepository.save(user);
+
     }
 
     @Override
-    public User findById(int id) {
-        try{
-            return userRepository.findById(id).get();
-        }catch(Exception ex) {
-            throw new RuntimeException("Aucun utilisateur n'a été trouvé avec cet ID: " + id);
+    public User getById(Integer id) {
+       Optional<User> result = userRepository.findById(id);
+        if(result.isPresent()){
+            return result.get();
         }
+        throw new RuntimeException("Aucun user n'a été trouvé avec cet ID: " + id);
+
+    }
+
+    @Override
+    public List<User> getLastUser() {
+        List<User> lastUsers = userRepository.findLastClient();
+
+        return lastUsers;
+
     }
 
     @Override
     public User findByLogin(String login) {
         try{
             return userRepository.findUserByLogin(login);
-        }catch(Exception ex){
-            throw new RuntimeException("Aucun n'utilisateur n'a été trouvé avec ce login: " + login);
+        } catch(Exception ex) {
+            throw new RuntimeException("Aucun user n'a été trouvé avec ce login: " + login);
         }
     }
 
     @Override
     public List<User> findAllUsers() {
-        try{
-            return userRepository.findAll();
-        }catch(Exception ex ){
-            throw new RuntimeException("Aucun n'utilisateur n'a été trouvé dans la BDD");
+        return userRepository.findAll();
+
+    }
+    @Override
+    public void deleteUser(Integer id) {
+        Long count = userRepository.countById(id);
+        if(count == null || count == 0){
+            throw new RuntimeException("Aucun user n'a été trouvé avec ce ID: " + id);
         }
+        userRepository.deleteById(id);
+    }
+    @Override
+    public void encodePassword(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
     }
 
-    @Override
-    public void deleteUser(int id) {
-        userRepository.deleteById(id);
+    @Transient
+    private String generatePassword() {
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        int length = 5;
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(alphabet.length());
+            char randomChar = alphabet.charAt(index);
+            sb.append(randomChar);
+        }
+
+        return String.valueOf(sb).toLowerCase();
+    }
+
+    @Transient
+    private String generatLogin(){
+        Long numCompte = (long) Math.floor(Math.random() * 9_00L) + 1_00L;
+        String login = "user".concat(String.valueOf(numCompte));
+
+        return login;
     }
 }

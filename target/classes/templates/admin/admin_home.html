@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>iGuichet | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">iGuichet</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a th:href="@{/admin}">Home</a></li>
+                <li><a th:href="@{/admin/users}">Users</a></li>
+                <li><a th:href="@{/admin/comptes}">Comptes</a></li>
+                <li><a th:href="@{/admin/operations}">Opérations</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Déconnexion</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="">
+        <div class="panel panel-primary col-sm-8 col-sm-offset-3 row-cols-sm-3">
+            <div class="panel-heading">Vous êtes connecté en tant qu'administrateur</div>
+            <div class="panel-body">
+                Bienvenu dans le logiciel iGuichet(Guichet Automatique), un logiciel de gestion
+                de compte bancaire.
+                Ceci est un projet d'école dans le cadre de l'obtention de notre diplôme de licence
+                en Science de l'Ingénieur.
+                Réalisé par <small><i>GBOSSOU Folly S. Carlo (Licence Génie Logiciel) &
+                PEREKE Prince (Licence Réseaux & Télécoms).</i></small>
+                Cliquez sur les différents menus en haut pour éffectuer les tâches.
+
+            </div>
+
+        </div>
+    </section>
+    <footer>
+        <div class="navbar-fixed-bottom text-center">
+            <small>&copy;Developed by Gbossou & Pereke</small>
+        </div>
+    </footer>
+</body>
+</html>

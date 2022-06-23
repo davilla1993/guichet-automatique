@@ -1,8 +1,8 @@
 package com.iaec.guichetautomatique.controllers.admin;
 
-import com.iaec.guichetautomatique.entities.Client;
+import com.iaec.guichetautomatique.entities.User;
 import com.iaec.guichetautomatique.entities.Compte;
-import com.iaec.guichetautomatique.services.ClientService;
+import com.iaec.guichetautomatique.services.UserService;
 import com.iaec.guichetautomatique.services.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,16 +16,17 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class CompteController {
 
     private CompteService compteService;
 
-    private ClientService clientService;
+    private UserService userService;
     @Autowired
-    public CompteController(CompteService compteService, ClientService clientService) {
+    public CompteController(CompteService compteService, UserService userService) {
 
         this.compteService = compteService;
-        this.clientService = clientService;
+        this.userService = userService;
     }
     @GetMapping("/comptes")
     public String listComptes(Model model, @RequestParam(name="page", defaultValue="0")int page,
@@ -44,23 +45,23 @@ public class CompteController {
     /*@GetMapping("/comptes/{id}")
     public String listCompteByClient(@PathVariable("id") Integer id, Model model){
 
-        Client client = clientService.getById(id);
-        Integer idClient = client.getId();
+        Client user = userService.getById(id);
+        Integer idClient = user.getId();
 
         List<Compte> compte = compteService.getCompteByClient(idClient);
 
-        return "client/comptes";
+        return "user/comptes";
     }*/
 
     @GetMapping("/compte/new")
     public String newCompte(Model model){
 
         Compte compte = new Compte();
-        List<Client> lastClients = clientService.getLastClient();
+        List<User> lastUsers = userService.getLastUser();
 
         model.addAttribute("title", "Ajouter un nouveau compte");
         model.addAttribute("compte", compte);
-        model.addAttribute("lastClients", lastClients);
+        model.addAttribute("lastUsers", lastUsers);
 
         return "/admin/compte_form";
     }
@@ -86,11 +87,11 @@ public class CompteController {
 
         try {
             Compte compte = compteService.findById(id);
-            List<Client> lastClients = clientService.getLastClient();
+            List<User> lastUsers = userService.getLastUser();
 
             model.addAttribute("title", "Mettre à jour les informations");
             model.addAttribute("compte", compte);
-            model.addAttribute("lastClients", lastClients);
+            model.addAttribute("lastUsers", lastUsers);
 
             return "admin/compte_form";
 
@@ -115,7 +116,7 @@ public class CompteController {
             System.out.println(ex.getMessage());
         }
 
-        return "redirect:/comptes";
+        return "redirect:/admin/comptes";
     }
 
 }

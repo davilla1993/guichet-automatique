@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>iGuichet | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">iGuichet</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/admin}">Home</a></li>
+                <li><a th:href="@{/admin/users}">Users</a></li>
+                <li><a th:href="@{/admin/comptes}">Comptes</a></li>
+                <li><a th:href="@{/admin/operations}">Opérations</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="container d-flex">
+        <div class="col-md-10">
+            <div class="col-md-10 col-md-offset-2 align-center">
+                <h1>[[${title}]]</h1>
+            </div>
+            <form th:action="@{/admin/user/save}" method="post" th:object="${user}">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="nom">Nom:</label>
+                    <input type="text" class="form-control" name="nom" id="nom" th:field="*{nom}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('nom')}" th:text="${err}" class="alert alert-danger" />
+                    </ul>
+                </div>
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="prenom">Prenoms:</label>
+                    <input type="text" class="form-control" name="prenom" id="prenom" th:field="*{prenom}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('prenom')}" th:text="${err}" class="alert alert-danger" />
+                    </ul>
+                </div>
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="tel">Téléphone:</label>
+                    <input type="tel" class="form-control" name="tel" id="tel" th:field="*{telephone}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('telephone')}" th:text="${err}" class="alert alert-danger" />
+                    </ul>
+                </div>
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="login">Login:</label>
+                    <input type="text" class="form-control" name="login" id="login" th:field="*{login}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('login')}" th:text="${err}" class="alert alert-danger" />
+                    </ul>
+                </div>
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label for="password">Mot de passe:</label>
+                    <input th:if="${user.id == null}" type="password" class="form-control" name="password" id="password" th:field="*{password}">
+                    <input th:if="${user.id != null}" class="form-control" type="text"
+                           value="(Vous ne pouvez pas modifier le mot de passe du client)" readonly="readonly"/>
+
+                    <ul>
+                        <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="alert alert-danger" />
+                    </ul>
+                </div>
+
+                <div class="form-group col-md-10 col-md-offset-2 align-center">
+                    <label>Roles:</label>
+                    <select th:field="*{roles}" class="form-control">
+                        <th:block th:each="role:${listRoles}">
+                            <option th:field="*{roles}" th:value="${role.id}" th:text="${role.name}">
+                                [[${role.name}]]
+                            </option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                    <a class="btn btn-warning" th:href="@{/admin/users}" role="button" id="CancelButton">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="navbar-fixed-bottom text-center">
+            <small>&copy;Developed by Gbossou & Pereke</small>
+        </div>
+    </footer>
+</body>
+</html>

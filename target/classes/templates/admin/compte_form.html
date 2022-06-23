@@ -15,10 +15,10 @@
                 <a class="navbar-brand" th:href="@{/}">iGuichet</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/clients}">Clients</a></li>
-                <li><a th:href="@{/comptes}">Comptes</a></li>
-                <li><a th:href="@{/operations}">Opérations</a></li>
+                <li><a th:href="@{/admin}">Home</a></li>
+                <li><a th:href="@{/admin/users}">Users</a></li>
+                <li><a th:href="@{/admin/comptes}">Comptes</a></li>
+                <li><a th:href="@{/admin/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
@@ -30,7 +30,7 @@
             <div class="col-md-10 col-md-offset-2 align-center">
                 <h1>[[${title}]]</h1>
             </div>
-            <form th:action="@{/compte/save}" method="post" th:object="${compte}">
+            <form th:action="@{/admin/compte/save}" method="post" th:object="${compte}">
                 <input type="hidden" th:field="*{id}">
 
                 <div class="form-group col-md-10 col-md-offset-2 align-center">
@@ -42,17 +42,17 @@
                 </div>
                 <div class="form-group col-md-10 col-md-offset-2 align-center">
                     <label>Client:</label>
-                    <select th:field="*{client}" class="form-control">
-                        <th:block th:each="client:${lastClients}">
-                            <option th:field="*{client}" th:value="${client.id}" th:text="${client.nom}">
-                                [[${client.nom}]]</option>
+                    <select th:field="*{user}" class="form-control">
+                        <th:block th:each="user:${lastUsers}">
+                            <option th:field="*{user}" th:value="${user.id}" th:text="${user.nom}">
+                                [[${user.nom}]]</option>
                         </th:block>
                     </select>
                 </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Envoyer</button>
-                    <a class="btn btn-warning" th:href="@{/comptes}" role="button" id="CancelButton">Annuler</a>
+                    <a class="btn btn-warning" th:href="@{/admin/comptes}" role="button" id="CancelButton">Annuler</a>
                 </div>
             </form>
         </div>

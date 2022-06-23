@@ -1,6 +1,7 @@
 package com.iaec.guichetautomatique.services.impl;
 
 import com.iaec.guichetautomatique.entities.Compte;
+import com.iaec.guichetautomatique.repository.UserRepository;
 import com.iaec.guichetautomatique.repository.CompteRepository;
 import com.iaec.guichetautomatique.services.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,13 @@ public class CompteServiceImpl implements CompteService {
 
     private CompteRepository compteRepository;
 
+    private UserRepository userRepository;
+
     @Autowired
-    public CompteServiceImpl(CompteRepository compteRepository) {
+    public CompteServiceImpl(CompteRepository compteRepository, UserRepository userRepository) {
 
         this.compteRepository = compteRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -67,15 +71,8 @@ public class CompteServiceImpl implements CompteService {
     }
 
     @Override
-    public List<Compte> getCompteByClient(Integer id) {
-
-        try {
-            List<Compte> compte = compteRepository.findCompteByClient(id);
-
-            return compte;
-        } catch (Exception ex) {
-            throw new RuntimeException("Aucun compte trouvé");
-        }
+    public List<Compte> getComptesByUser(Integer id) {
+        return compteRepository.findByUserId(id);
     }
 
     @Override

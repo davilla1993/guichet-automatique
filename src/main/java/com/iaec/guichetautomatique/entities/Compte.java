@@ -18,12 +18,11 @@ public class Compte {
     private Date dateCreation;
 
     @Column(name = "solde")
-    @Digits(integer =16, fraction = 2, message = "Le solde doit être uniquement des chiffres")
     private double solde;
 
     @ManyToOne
-    @JoinColumn(name= "id_client")
-    private Client client;
+    @JoinColumn(name= "id_user")
+    private User user;
 
     @OneToMany(mappedBy = "compte")
     private List<Operation> operations;
@@ -31,32 +30,32 @@ public class Compte {
     public Compte() {
     }
 
-    public Compte(Integer id, int numeroCompte, Date dateCreation, double solde, Client client) {
+    public Compte(Integer id, int numeroCompte, Date dateCreation, double solde, User user) {
         this.id = id;
         this.numeroCompte = numeroCompte;
         this.dateCreation = dateCreation;
         this.solde = solde;
-        this.client = client;
+        this.user = user;
     }
 
-    public Compte(int numeroCompte, Date dateCreation, double solde, Client client) {
+    public Compte(int numeroCompte, Date dateCreation, double solde, User user) {
         this.numeroCompte = numeroCompte;
         this.dateCreation = dateCreation;
         this.solde = solde;
-        this.client = client;
+        this.user = user;
     }
 
-    public Compte(int numeroCompte, Date dateCreation, double solde, Client client, List<Operation> operations) {
+    public Compte(int numeroCompte, Date dateCreation, double solde, User user, List<Operation> operations) {
         this.numeroCompte = numeroCompte;
         this.dateCreation = dateCreation;
         this.solde = solde;
-        this.client = client;
+        this.user = user;
         this.operations = operations;
     }
 
-    public Compte(double solde, Client client) {
+    public Compte(double solde, User user) {
         this.solde = solde;
-        this.client = client;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -97,14 +96,12 @@ public class Compte {
         this.solde = solde;
     }
 
-    public Client getClient() {
-
-        return client;
+    public User getUser() {
+        return user;
     }
 
-    public void setClient(Client client) {
-
-        this.client = client;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Operation> getOperations() {

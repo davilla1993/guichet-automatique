@@ -7,19 +7,17 @@ import java.util.List;
 
 public interface CompteService {
 
-    public Compte create(Compte compte);
+    Compte create(Compte compte);
 
-    public List<Compte> findAll();
+    List<Compte> findAll();
 
-    public Page<Compte> listCompteByPage(int page, int size);
+    Page<Compte> listCompteByPage(int page, int size);
 
-    public List<Compte> getCompteByClient(Integer id);
+    List<Compte> getComptesByUser(Integer id);
+     Compte findById(int id);
+     Compte getCompteByNumeroCompte(Integer numCompte);
 
-    public Compte findById(int id);
-
-    public Compte getCompteByNumeroCompte(Integer numCompte);
-
-    public void delete(int numeroCompte);
+     void delete(int numeroCompte);
 
 
 }

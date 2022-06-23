@@ -17,10 +17,10 @@
                 <a class="navbar-brand" th:href="@{/}">iGuichet</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/clients}">Clients</a></li>
-                <li><a th:href="@{/comptes}">Comptes</a></li>
-                <li><a th:href="@{/operations}">Opérations</a></li>
+                <li class="active"><a th:href="@{/admin}">Home</a></li>
+                <li><a th:href="@{/admin/users}">Users</a></li>
+                <li><a th:href="@{/admin/comptes}">Comptes</a></li>
+                <li><a th:href="@{/admin/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
@@ -33,7 +33,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Consultation d'un compte</div>
                 <div class="panel-body">
-                    <form th:action="@{/consulterCompte}" method="get">
+                    <form th:action="@{/admin/consulterCompte}" method="get">
                         <div>
                             <label>Numéro de compte:</label>
                             <input type="number" name="numCompte" th:value="${numCompte}"/>
@@ -55,8 +55,8 @@
                     </div>
                     <div>
                         <label>Titulaire de compte:</label>
-                        <label th:text="${compte.client.nom}"></label>
-                        <label th:text="${compte.client.prenom}"></label>
+                        <label th:text="${compte.user.nom}"></label>
+                        <label th:text="${compte.user.prenom}"></label>
                     </div>
                     <div>
                         <label>Date de création:</label>
@@ -73,11 +73,11 @@
             <div class="panel panel-primary" th:if="${compte}">
                 <div class="panel-heading">Opérations sur le compte</div>
                 <div class="panel-body">
-                    <form th:action="@{/depot}" method="post">
+                    <form th:action="@{/admin/depot}" method="post">
                         <input type="hidden" name="numCompte" th:value="${numCompte}">
                         <div>
                             <label>Effectuer un virement</label>
-                            <input type="text" name="montant">
+                            <input type="number" name="montant">
                             <div class="text-danger"
                                  th:text="${#httpServletRequest.getParameter('error')}">
                             </div>
