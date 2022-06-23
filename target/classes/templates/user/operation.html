@@ -23,8 +23,10 @@
                 <li><a th:href="@{/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                <form th:action="@{/logout}" method="post">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <input type="submit" value="Deconnexion"/>
+                </form>
             </ul>
         </div>
     </nav>

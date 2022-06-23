@@ -73,10 +73,12 @@ public class iGuichetUserDetails implements UserDetails {
     }
 
     public void setFirstName(String firstName) {
+
         this.user.setPrenom(firstName);
     }
 
     public void setLastName(String lastName) {
+
         this.user.setNom(lastName);
     }
 

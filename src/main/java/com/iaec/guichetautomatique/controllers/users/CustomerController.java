@@ -29,7 +29,7 @@ public class CustomerController {
 
     @GetMapping("")
     public String showClientHome(){
-        return "client/user_home";
+        return "user/user_home";
     }
 
     @GetMapping("/comptes")

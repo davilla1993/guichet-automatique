@@ -81,6 +81,25 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
 
     }
+
+    @Override
+    public User updateAccount(User userInForm) {
+
+        User userInDB = userRepository.findById(userInForm.getId()).get();
+        System.out.print("IUSERiNDB: " + userInDB);
+        if(!userInForm.getPassword().isEmpty()){
+            userInDB.setPassword(userInForm.getPassword());
+            encodePassword(userInDB);
+        }
+
+        userInDB.setNom(userInForm.getNom());
+        userInDB.setPrenom(userInForm.getPrenom());
+        userInDB.setTelephone(userInForm.getTelephone());
+        userInDB.setLogin(userInForm.getLogin());
+
+        return userRepository.save(userInDB);
+    }
+
     @Override
     public void deleteUser(Integer id) {
         Long count = userRepository.countById(id);

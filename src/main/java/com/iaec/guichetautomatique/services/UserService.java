@@ -15,7 +15,9 @@ public interface UserService {
     User findByLogin(String login);
 
     List<User> findAllUsers();
+    User updateAccount(User userInForm);
 
     void deleteUser(Integer id);
+
     void encodePassword(User user);
 }
