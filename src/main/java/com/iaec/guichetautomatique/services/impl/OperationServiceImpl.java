@@ -39,7 +39,7 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public void verser(int numeroCompte, double montant) {
+    public void verser(int numeroCompte, int montant) {
 
         Compte compte = consulterCompte(numeroCompte);
         Versement versement = new Versement(new Date(), montant, compte);
@@ -50,7 +50,7 @@ public class OperationServiceImpl implements OperationService {
     }
 
     @Override
-    public void retirer(int numeroCompte, double montant) {
+    public void retirer(int numeroCompte, int montant) {
         Compte compte = consulterCompte(numeroCompte);
 
         if(compte.getSolde() > montant ) {

@@ -28,8 +28,7 @@ public class OperationController {
         return "admin/operation";
     }
     @GetMapping("/consulterCompte")
-    public String consulter(Model model, int numCompte,
-            @RequestParam(name="page", defaultValue="0")int page,
+    public String consulter(Model model, int numCompte, @RequestParam(name="page", defaultValue="0")int page,
                             @RequestParam(name="size", defaultValue="4")int size){
         String message = "";
 
@@ -54,7 +53,7 @@ public class OperationController {
         return "admin/operation";
     }
     @PostMapping("/depot")
-    public String versement(Model model, int numCompte, double montant) {
+    public String versement(Model model, int numCompte, int montant) {
 
         try{
             operationService.verser(numCompte, montant);

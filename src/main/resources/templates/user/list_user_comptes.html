@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>iGuichet | Admin</title>
+    <title>iGuichet | Listcomptes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -12,13 +12,13 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/admin}">iGuichet</a>
+                <a class="navbar-brand" th:href="@{/user}">iGuichet</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a th:href="@{/admin}">Home</a></li>
-                <li><a th:href="@{/admin/users}">Users</a></li>
-                <li><a th:href="@{/admin/comptes}">Comptes</a></li>
-                <li><a th:href="@{/admin/operations}">Opérations</a></li>
+                <li><a th:href="@{/user}">Home</a></li>
+                <li><a th:href="@{/user/profil}">Profil</a></li>
+                <li><a th:href="@{/user/comptes}">Comptes</a></li>
+                <li><a th:href="@{/user/operations}">Opérations</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <form th:action="@{/logout}" method="post">
@@ -30,26 +30,23 @@
     </nav>
     <section>
         <div class="panel panel-primary">
-            <div class="panel-heading">Bonjour [[${#httpServletRequest.remoteUser}]]</div>
+            <div class="panel-heading">Liste de vos comptes</div>
             <div class="panel-body">
-                Vous êtes connecté en tant qu'administrateur
+                <table class="table table-striped">
+                    <tr>
+                        <th>N°</th>
+                        <th>N° comptes</th>
+                        <th>Date de création</th>
+                        <th>Soldes</th>
+                    </tr>
+                    <tr th:each="compte, status:${listUserComptes}">
+                        <td th:text="${status.index+1}"></td>
+                        <td th:text="${compte.numeroCompte}"></td>
+                        <td th:text="${compte.dateCreation}"></td>
+                        <td th:text="${compte.solde}"></td>
+                    </tr>
+                </table>
             </div>
-        </div>
-
-
-
-        <div class="border-success">
-            <h2>
-                Bienvenu dans le logiciel iGuichet(Guichet Automatique), un logiciel de gestion
-                de compte bancaire.
-            </h2>
-            <p>
-                Ceci est un projet d'école réalisé dans le cadre de l'obtention de notre diplôme de
-                licence en Science de l'Ingénieur.
-                Conçu par <small><i>GBOSSOU Folly S. Carlo (Licence Génie Logiciel) &
-                PEREKE Prince (Licence Réseaux & Télécoms).</i></small>
-                Cliquez sur les différents menus en haut pour éffectuer les tâches.
-            </p>
         </div>
     </section>
     <footer>

@@ -72,6 +72,7 @@ public class CompteServiceImpl implements CompteService {
 
     @Override
     public List<Compte> getComptesByUser(Integer id) {
+
         return compteRepository.findByUserId(id);
     }
 

@@ -20,7 +20,7 @@
             <li><a th:href="@{/user}">Home</a></li>
             <li><a th:href="@{/user/profil}">Profil</a></li>
             <li><a th:href="@{/user/comptes}">Comptes</a></li>
-            <li><a th:href="@{/operations}">Opérations</a></li>
+            <li><a th:href="@{/user/operations}">Opérations</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <form th:action="@{/logout}" method="post">
@@ -88,7 +88,8 @@
 </section>
 <footer>
     <div class="navbar-fixed-bottom text-center">
-        <small>&copy;Developed by Gbossou & Pereke</small>
+        <small>&copy;Developed by <a target="_blank" href="http://follytech.herokuapp.com">
+            Gbossou Folly S. Carlo</a></small>
     </div>
 </footer>
 </body>

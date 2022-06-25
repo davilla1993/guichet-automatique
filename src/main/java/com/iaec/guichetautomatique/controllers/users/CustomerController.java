@@ -31,16 +31,17 @@ public class CustomerController {
     public String showClientHome(){
         return "user/user_home";
     }
-
     @GetMapping("/comptes")
     public String getComptesClient(Model model, Principal principal){
 
-        String login = principal.getName();
-        User user = userService.findByLogin(login);
-        List<Compte> listCompte = compteService.getComptesByUser(user.getId());
+        String loggedUser = principal.getName();
+        User user = userService.findByLogin(loggedUser);
+        List<Compte> listUserComptes = compteService.getComptesByUser(user.getId());
 
-        model.addAttribute("listCompte", listCompte);
+        model.addAttribute("listUserComptes", listUserComptes);
 
-        return "user/comptes";
+        return "user/list_user_comptes";
     }
+
+
 }

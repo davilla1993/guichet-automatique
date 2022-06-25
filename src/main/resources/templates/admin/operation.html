@@ -73,12 +73,12 @@
         </div>
         <div class="col-md-6">
             <div class="panel panel-primary" th:if="${compte}">
-                <div class="panel-heading">Opérations sur le compte</div>
+                <div class="panel-heading">Effectuer un dépôt:</div>
                 <div class="panel-body">
                     <form th:action="@{/admin/depot}" method="post">
                         <input type="hidden" name="numCompte" th:value="${numCompte}">
                         <div>
-                            <label>Effectuer un virement</label>
+                            <label>Montant du versement:</label>
                             <input type="number" name="montant">
                             <div class="text-danger"
                                  th:text="${#httpServletRequest.getParameter('error')}">
@@ -120,7 +120,8 @@
     </section>
     <footer>
         <div class="navbar-fixed-bottom text-center">
-            <small>&copy;Developed by Gbossou & Pereke</small>
+            <small>&copy;Developed by <a target="_blank" href="http://follytech.herokuapp.com">
+                Gbossou Folly S. Carlo</a></small>
         </div>
     </footer>
 </body>

@@ -1,6 +1,7 @@
 package com.iaec.guichetautomatique.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ public abstract class Operation {
     private Date dateOperation;
 
     @Column(name = "montant")
-    private double montant;
+    private int montant;
 
     @ManyToOne
     @JoinColumn(name = "id_compte")
@@ -26,13 +27,14 @@ public abstract class Operation {
     public Operation() {
     }
 
-    public Operation(Date dateOperation, double montant, Compte compte) {
+    public Operation(Date dateOperation, int montant, Compte compte) {
         this.dateOperation = dateOperation;
         this.montant = montant;
         this.compte = compte;
     }
 
     public int getId() {
+
         return id;
     }
 
@@ -41,26 +43,32 @@ public abstract class Operation {
     }
 
     public Date getDateOperation() {
+
         return dateOperation;
     }
 
     public void setDateOperation(Date dateOperation) {
+
         this.dateOperation = dateOperation;
     }
 
     public double getMontant() {
+
         return montant;
     }
 
-    public void setMontant(double montant) {
+    public void setMontant(int montant) {
+
         this.montant = montant;
     }
 
     public Compte getCompte() {
+
         return compte;
     }
 
     public void setCompte(Compte compte) {
+
         this.compte = compte;
     }
 }

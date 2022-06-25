@@ -11,7 +11,7 @@ public class Versement extends Operation{
     public Versement() {
     }
 
-    public Versement(Date dateOperation, double montant, Compte compte) {
+    public Versement(Date dateOperation, int montant, Compte compte) {
 
         super(dateOperation, montant, compte);
     }

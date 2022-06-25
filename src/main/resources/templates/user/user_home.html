@@ -12,34 +12,39 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/user}">iGuichet</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/user}">Home</a></li>
-                <li><a th:href="@{/user/profil}">Profil</a></li>
-                <li><a th:href="@{/user/comptes}">Comptes</a></li>
-                <li><a th:href="@{/user/operations}">Opérations</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <form th:action="@{/logout}" method="post">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <input type="submit" value="Deconnexion"/>
-                </form>
-            </ul>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/user}">iGuichet</a>
         </div>
-    </nav>
-    <section class="bg">
-        <div class="text-center fw-light">
-            <h1>BIENVENU DANS VOTRE BANQUE EN LIGNE</h1>
-        </div>
-    </section>
-    <footer>
-        <div class="navbar-fixed-bottom text-center">
-            <small>&copy;Developed by Gbossou & Pereke</small>
-        </div>
-    </footer>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/user}">Home</a></li>
+            <li><a th:href="@{/user/profil}">Profil</a></li>
+            <li><a th:href="@{/user/comptes}">Comptes</a></li>
+            <li><a th:href="@{/user/operations}">Opérations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <form th:action="@{/logout}" method="post">
+                <span class="glyphicon glyphicon-user"></span>
+                <input type="submit" value="Deconnexion"/>
+            </form>
+        </ul>
+    </div>
+</nav>
+    <div>
+        <p>Bonjour [[${#httpServletRequest.remoteUser}]]</p>
+    </div>
+    <header id="showcase">
+        <h1>Bienvenu dans iGuichet</h1>
+        <p>L'application qui vous facilite la vie.</p>
+        <p>Gérer tous vos comptes en seul endroit et effectuer
+            des transactions depuis le confort de votre canapé !!</p>
+    </header>
+<footer>
+    <div class="navbar-fixed-bottom text-center">
+        <small>&copy;Developed by <a target="_blank" href="http://follytech.herokuapp.com">
+            Gbossou Folly S. Carlo</a></small>
+    </div>
+</footer>
 </body>
 </html>

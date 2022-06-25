@@ -28,25 +28,34 @@
             </ul>
         </div>
     </nav>
-    <section class="d-flex align-content-md-center">
-        <div class="panel panel-primary col-md-8 col-sm-offset-2">
-            <div class="panel-heading">Vous êtes connecté en tant qu'administrateur</div>
+    <section>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Bonjour [[${#httpServletRequest.remoteUser}]]</div>
             <div class="panel-body">
+                Vous êtes connecté en tant qu'administrateur
+            </div>
+        </div>
+
+
+
+        <div class="border-success">
+            <h2>
                 Bienvenu dans le logiciel iGuichet(Guichet Automatique), un logiciel de gestion
                 de compte bancaire.
-                Ceci est un projet d'école réalisé dans le cadre de l'obtention de notre diplôme de licence
-                en Science de l'Ingénieur.
+            </h2>
+            <p>
+                Ceci est un projet d'école réalisé dans le cadre de l'obtention de notre diplôme de
+                licence en Science de l'Ingénieur.
                 Conçu par <small><i>GBOSSOU Folly S. Carlo (Licence Génie Logiciel) &
                 PEREKE Prince (Licence Réseaux & Télécoms).</i></small>
                 Cliquez sur les différents menus en haut pour éffectuer les tâches.
-
-            </div>
-
+            </p>
         </div>
     </section>
     <footer>
         <div class="navbar-fixed-bottom text-center">
-            <small>&copy;Developed by Gbossou & Pereke</small>
+            <small>&copy;Developed by <a target="_blank" href="http://follytech.herokuapp.com">
+                Gbossou Folly S. Carlo</a></small>
         </div>
     </footer>
 </body>

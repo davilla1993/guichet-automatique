@@ -78,7 +78,7 @@ public class CompteController {
             redirectAttributes.addFlashAttribute("message",
                     "Les informations de compte ont été ajoutées avec succès");
 
-            return "redirect:/comptes";
+            return "redirect:/admin/comptes";
     }
 
     @GetMapping("/compte/edit/{id}")
@@ -100,7 +100,7 @@ public class CompteController {
 
             System.out.println(ex.getMessage());
 
-            return "redirect:/comptes";
+            return "redirect:/admin/comptes";
         }
     }
 

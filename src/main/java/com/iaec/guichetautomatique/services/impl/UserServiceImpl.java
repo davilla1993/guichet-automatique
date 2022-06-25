@@ -86,7 +86,6 @@ public class UserServiceImpl implements UserService {
     public User updateAccount(User userInForm) {
 
         User userInDB = userRepository.findById(userInForm.getId()).get();
-        System.out.print("IUSERiNDB: " + userInDB);
         if(!userInForm.getPassword().isEmpty()){
             userInDB.setPassword(userInForm.getPassword());
             encodePassword(userInDB);

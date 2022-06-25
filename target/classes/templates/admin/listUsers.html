@@ -12,7 +12,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">iGuichet</a>
+                <a class="navbar-brand" th:href="@{/admin}">iGuichet</a>
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a th:href="@{/admin}">Home</a></li>
@@ -30,7 +30,7 @@
     </nav>
     <section>
         <div class="panel panel-primary">
-            <div class="panel-heading">Liste des clients de la banque</div>
+            <div class="panel-heading">Liste des utilisateurs</div>
             <div class="panel-body">
                 <div class="justify-content-end mx-5">
                     <a class="btn btn-info" th:href="@{/admin/user/new}" role="button">
@@ -69,7 +69,6 @@
                             </tr>
                         </th:block>
                     </tbody>
-
                 </table>
                 <div class="container text-center">
                     <ul class="nav nav-pills">
@@ -84,7 +83,8 @@
     </section>
     <footer>
         <div class="navbar-fixed-bottom text-center">
-            <small>&copy;Developed by Gbossou & Pereke</small>
+            <small>&copy;Developed by <a target="_blank" href="http://follytech.herokuapp.com">
+                Gbossou Folly S. Carlo</a></small>
         </div>
     </footer>
 </body>
