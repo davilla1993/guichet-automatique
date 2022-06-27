@@ -37,7 +37,7 @@ public class GuichetAutomatiqueApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Création des roles
-		/*Role role_admin = new Role("ADMIN");
+		Role role_admin = new Role("ADMIN");
 		Role role_user =  new Role("USER");
 		roleService.createRole(role_admin);
 		roleService.createRole(role_user);
@@ -67,7 +67,7 @@ public class GuichetAutomatiqueApplication implements CommandLineRunner {
 				System.out.println("Titulaire : " + compte.getUser().getNom());
 				System.out.println("Numéro de compte:" + compte.getNumeroCompte());
 				System.out.println("Solde : " + compte.getSolde());
-			}*/
+			}
 
 	}
 }
