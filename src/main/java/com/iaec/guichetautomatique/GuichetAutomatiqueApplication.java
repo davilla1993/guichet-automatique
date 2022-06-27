@@ -16,22 +16,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 
 @SpringBootApplication
-public class GuichetAutomatiqueApplication implements CommandLineRunner {
-
-	@Autowired
-	private RoleService roleService;
-	@Autowired
-	private CompteService compteService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	private RoleRepository roleRepository;
+public class GuichetAutomatiqueApplication {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(GuichetAutomatiqueApplication.class, args);
+<<<<<<< HEAD
 	}
 
 	@Override
@@ -69,4 +59,7 @@ public class GuichetAutomatiqueApplication implements CommandLineRunner {
 				System.out.println("Solde : " + compte.getSolde());
 		}*/
 	}
+=======
+	}		
+>>>>>>> 2e6cd28ee6425d75ab77562e0e85cc633cd4e822
 }
