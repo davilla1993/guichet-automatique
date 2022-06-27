@@ -100,7 +100,6 @@ public class User {
         return nom;
     }
     public void setNom(String nom) {
-
         this.nom = nom;
     }
     public String getPrenom() {

@@ -54,6 +54,6 @@ public class AccountController {
 
         redirectAttributes.addFlashAttribute("message", "Votre profil a été mis à jour avec succès");
 
-        return "redirect:/user/profil?loggedUser="+loggedUser;
+        return "redirect:/user/profil";
     }
 }

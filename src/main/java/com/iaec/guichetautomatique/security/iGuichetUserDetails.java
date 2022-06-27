@@ -34,31 +34,26 @@ public class iGuichetUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-
         return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-
         return user.getLogin();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-
         return true;
     }
 
@@ -66,24 +61,21 @@ public class iGuichetUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
     public String getFullname() {
-
         return this.user.getNom() + " " + this.user.getPrenom();
     }
 
     public void setFirstName(String firstName) {
-
         this.user.setPrenom(firstName);
     }
 
     public void setLastName(String lastName) {
-
         this.user.setNom(lastName);
     }
 
-    public boolean hasRole(String roleName){
 
+
+    public boolean hasRole(String roleName){
         return user.hasRole(roleName);
     }
 }
