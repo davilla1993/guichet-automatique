@@ -71,8 +71,8 @@
                 <div class="form-group col-md-10 col-md-offset-2 align-center">
                     <label for="password">Mot de passe:</label>
                     <input th:if="${user.id == null}" type="password" class="form-control" name="password" id="password" th:field="*{password}">
-                    <input th:if="${user.id != null}" class="form-control" type="text"
-                           value="(Vous ne pouvez pas modifier le mot de passe du client)" readonly="readonly"/>
+                    <input th:if="${user.id != null}" class="form-control" type="text" th:field="*{password}"
+                           placeholder="(Vous ne pouvez pas modifier le mot de passe du client)" readonly="readonly"/>
 
                     <ul>
                         <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="alert alert-danger" />
