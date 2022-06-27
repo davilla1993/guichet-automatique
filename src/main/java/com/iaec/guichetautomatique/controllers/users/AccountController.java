@@ -24,7 +24,6 @@ public class AccountController {
 
     @Autowired
     public AccountController(UserService userService) {
-
         this.userService = userService;
     }
 
@@ -49,7 +48,7 @@ public class AccountController {
             return "/user/profil_page";
         }
 
-        userService.updateAccount(user);
+        User savedUser = userService.updateAccount(user);
         loggedUser.setFirstName(user.getPrenom());
         loggedUser.setLastName(user.getNom());
 

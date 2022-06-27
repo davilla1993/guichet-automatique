@@ -38,6 +38,8 @@
                 </div>
 
                 <div th:if="${message}" class="alert alert-success text-center">[[${message}]]</div>
+                <div th:if="${error}" class="alert alert-danger text-center">[[${error}]]</div>
+
 
                 <table class="table table-striped">
                     <thead>
@@ -63,7 +65,7 @@
                                 <td>
                                     <a class="btn btn-warning" th:href="@{'/admin/user/edit/' + ${user.id}}">Editer</a>
 
-                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer ce user?')"
+                                    <a onclick="return confirm('Etes-vous sûr de vouloir supprimer cet utilisateur?')"
                                        class="btn btn-danger" th:href="@{'/admin/user/delete/' + ${user.id}}">Supprimer</a>
                                 </td>
                             </tr>

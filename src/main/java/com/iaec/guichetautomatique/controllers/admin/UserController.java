@@ -98,17 +98,17 @@ public class UserController {
         }
     }
     @GetMapping("/user/delete/{id}")
-    public String deleteClient(@PathVariable("id")Integer id, RedirectAttributes redirectAttributes){
+    public String deleteClient(@PathVariable("id")Integer id, RedirectAttributes redirectAttributes, Model model){
 
-        try{
+        List<Compte> clientComptes = compteService.getComptesByUser(id);
+        if(clientComptes.isEmpty()){
             userService.deleteUser(id);
             redirectAttributes.addFlashAttribute("message", "Le client a été supprimé avec succès");
-
-        }catch(Exception ex){
-            redirectAttributes.addFlashAttribute("message", ex.getMessage());
-            System.out.print(ex.getMessage());
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Impossible de supprimer ce client car il possède déjà un compte");
         }
 
             return "redirect:/admin/users";
     }
+
 }
